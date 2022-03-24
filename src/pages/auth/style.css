@@ -1,0 +1,62 @@
+@import url('https://fonts.googleapis.com/css2?family=Nunito:wght@600;800;900&display=swap');
+
+.container{
+  display: flex;
+  color: white;
+  height: 100vh;
+}
+
+.sing-in{
+  flex: 1 8 45%;
+  
+}
+
+.sing-up{
+  flex: 1 6 55%;
+  background-color: #2b2b2b;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+   font-family: 'Nunito', sans-serif;
+ 
+}
+
+.sing-up label, input{
+  
+  font-weight: 600;
+}
+
+.sing-up label{
+  font-size: 1.8rem;
+  letter-spacing: 1.2px;
+  margin-bottom: 5px;
+}
+
+.sing-up input{
+ background: none;
+ border: 1.6px solid white;
+ padding: 10px 26px 10px 20px;
+ border-radius: 20px;
+ font-size: 1.8rem;
+ margin-bottom: 15px;
+ color: white;
+ 
+}
+
+.sing-up button{
+  background: none;
+  border: 1.6px solid white;
+  padding: 10px 30px;
+  border-radius: 20px;
+  font-size: 2rem;
+  margin-bottom: 10px;
+  color: white;
+  cursor: pointer;
+  text-align: center;
+ }
+
+ h1{
+  font-size: 3rem;
+ }
+
