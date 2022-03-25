@@ -1,4 +1,4 @@
-import React, {useRef} from 'react';
+import React, {useRef, useEffect} from 'react';
 import './style.css'
 import { useAuth } from '../../context/authContext';
 import { useNavigate } from 'react-router-dom';
@@ -27,13 +27,22 @@ export default function Auth(){
     .then((userCredential) => {
       setCurrentUser(userCredential)
       createStruct(userCredential, name)
- localStorage.setItem('userUid', userCredential.user.uid)
+    localStorage.setItem('userUid', userCredential.user.uid)
+    localStorage.setItem('userUrl', `/tasks/${userCredential.user.uid}`)
+    localStorage.setItem('accessToken', userCredential.user.accessToken)
       navigate(`/tasks/${userCredential.user.uid}`)
     })
     .catch((err) => {
       console.log(err)
     })
   }
+
+
+  useEffect(() => {
+    if(localStorage.getItem('accessToken') !== null) {
+      navigate(`/tasks/${localStorage.getItem('userUid')}`)
+    }
+  },[])
   return(
     <>
     <div className='container'>

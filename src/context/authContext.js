@@ -2,7 +2,7 @@ import React, { createContext, useContext, useState, useEffect } from 'react';
 import { createUserWithEmailAndPassword } from "firebase/auth";
 import { auth } from '../services/FirebaseConfig'
 
-import {  collection, setDoc, doc, addDoc, } from 'firebase/firestore/lite';
+import {  collection, setDoc, doc, addDoc, getDocs} from 'firebase/firestore/lite';
 import { db } from '../services/FirebaseConfig'
 const path = collection(db, 'users')
 
@@ -23,8 +23,9 @@ export function AuthProvider(prosp){
       return unsubcriber;
     })
   }, [])
-  function createUser(email, password){
-    return createUserWithEmailAndPassword(auth, email, password)
+  
+  async  function createUser(email, password){
+    return await createUserWithEmailAndPassword(auth, email, password)
   }
 
   async function createStruct(userCredential, name){
@@ -33,12 +34,26 @@ export function AuthProvider(prosp){
     })
 
     await addDoc(collection(db, 'users', userCredential.user.uid, 'tasks'),{
-      teste: 'okay',
+     
     })
   }
+
+  async function updateValuesTasks(collectionRef, setTasks){
+    const getTasks = async () => {
+      const data = await getDocs(collectionRef)
+      setTasks(data.docs.map((doc) => ({
+        ...doc.data(),
+        id: doc.id
+      }
+      )))
+    }
+    getTasks()
+  }
+
   const value = {
     createUser,
     setCurrentUser,
+    updateValuesTasks,
     currentUser,
     createStruct
   }
