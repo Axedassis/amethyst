@@ -2,7 +2,7 @@ import React, {useRef, useEffect} from 'react';
 import './style.css'
 import { useAuth } from '../../context/authContext';
 import { useNavigate } from 'react-router-dom';
-export default function Auth(){
+export default function SingUp(){
   const navigate = useNavigate()
   const name = useRef()
   const email = useRef()
@@ -52,6 +52,7 @@ export default function Auth(){
         Welcome Back!
       </h2>
       <p>if you already have an account, sing-in here</p>
+      <button onClick={() => {navigate('/login')}}>Sing in</button>
       </aside>
     </div>
         <form className='sing-up' onSubmit={handleCreateUser}>

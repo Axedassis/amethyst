@@ -1,0 +1,91 @@
+.container-singIn{
+  display: flex;
+  height: 100vh;
+  color:white;
+  font-family: 'Nunito', sans-serif;
+}
+
+
+.sing-in-login{
+  flex: 1 8 55%; 
+  display: flex;
+ 
+}
+
+.sing-in-login form{
+  display: flex;
+  flex-direction: column;
+  height: 100%; width: 100%;
+  justify-content: center;
+  align-items: center;
+}
+
+.sing-in-login input{
+  background: none;
+  border: 1.6px solid white;
+  padding: 10px 26px 10px 20px;
+  border-radius: 20px;
+  font-size: 1.8rem;
+  margin-bottom: 15px;
+  color: white;
+}
+
+.sing-in-login label{
+  font-size: 1.8rem;
+  letter-spacing: 1.2px;
+  margin-bottom: 5px;
+}
+
+.sing-in-login button{
+  background: none;
+  border: 1.6px solid white;
+  padding: 10px 30px;
+  border-radius: 20px;
+  font-size: 2rem;
+  margin-bottom: 10px;
+  color: white;
+  cursor: pointer;
+  text-align: center;
+}
+
+/*  */
+
+.sing-up-login{
+  flex: 1 6 45%;
+  display: flex;
+  background: rgb(20,12,92);
+  background: linear-gradient(336deg, rgba(20,12,92,1) 0%, rgba(15,69,163,1) 45%, rgba(127,11,157,1) 100%);
+}
+
+.aside-sing-up-login{
+  width: 100%;
+  height: 95%;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+
+
+.aside-sing-up-login h2{
+  font-size: 3rem;
+  margin: 0;
+
+}
+
+.aside-sing-up-login p{
+  margin: 2px 0 10px 0;
+  font-size: 1.2rem;
+}
+
+.aside-sing-up-login button{
+  background: none;
+  border: 1.6px solid white;
+  padding: 5px 35px;
+  border-radius: 20px;
+  font-size: 2rem;
+  margin-bottom: 10px;
+  color: white;
+  cursor: pointer;
+  text-align: center;
+}

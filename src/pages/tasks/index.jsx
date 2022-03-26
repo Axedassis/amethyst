@@ -5,7 +5,7 @@ import { useAuth } from '../../context/authContext';
 import {useParams, useNavigate}  from "react-router-dom"
 import './style.css'
 export default function Tasks(){
- const { currentUser, updateValuesTasks } = useAuth()
+ const { currentUser, updateValuesTasks, handleLogOff } = useAuth()
  const taskName = useRef()
  const [tasks, setTasks] = useState([])
 const collectionRef = collection(db, 'users', localStorage.getItem('userUid'), 'tasks')
@@ -29,6 +29,10 @@ const navigate = useNavigate()
       completed: true,
     })
   }
+
+  async function handleLogOfffunction(){
+    handleLogOff()
+  }
    async function handleDeleteTask(id){
      const ref = doc(db, 'users', localStorage.getItem('userUid'), 'tasks', id)
     await deleteDoc(ref)
@@ -51,6 +55,9 @@ const navigate = useNavigate()
   <div className='body'>
     <div className='banner'>
 
+    </div>
+    <div className='log-off'>
+      <button onClick={handleLogOfffunction}>Log-off</button>
     </div>
     
     <div className='all-tasks'>

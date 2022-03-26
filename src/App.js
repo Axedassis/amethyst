@@ -1,7 +1,8 @@
 import './App.css';
 
-import Auth from './pages/auth';
+import SingUp from './pages/singup';
 import Tasks from './pages/tasks';
+import Login from './pages/login';
 
 import { AuthProvider } from './context/authContext';
 import { Route, BrowserRouter, Routes, Navigate } from 'react-router-dom';
@@ -13,11 +14,11 @@ function App() {
   }
   return (
     <div className="App">
-
       <BrowserRouter>
       <AuthProvider>
         <Routes> 
-          <Route path='/login' element={<Auth />} />
+          <Route path='/singup' element={<SingUp />} />
+          <Route path='/login' element={<Login />} />
           <Route path='*' element={<p>There's nothing here: 404!</p>} />
           <Route path='/tasks/:uid' element={<PrivateRoute redirectTo='/login'>
             <Tasks />

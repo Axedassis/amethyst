@@ -1,7 +1,7 @@
 import React, { createContext, useContext, useState, useEffect } from 'react';
-import { createUserWithEmailAndPassword } from "firebase/auth";
+import { createUserWithEmailAndPassword, signInWithEmailAndPassword  } from "firebase/auth";
 import { auth } from '../services/FirebaseConfig'
-
+import { useNavigate } from 'react-router-dom';
 import {  collection, setDoc, doc, addDoc, getDocs} from 'firebase/firestore/lite';
 import { db } from '../services/FirebaseConfig'
 const path = collection(db, 'users')
@@ -13,6 +13,7 @@ export function useAuth(){
 }
 
 export function AuthProvider(prosp){
+  const navigate = useNavigate()
   const [currentUser, setCurrentUser] = useState()
 
   useEffect(() => {
@@ -50,12 +51,33 @@ export function AuthProvider(prosp){
     getTasks()
   }
 
+  async function loginUser(email, password){
+
+    await signInWithEmailAndPassword(auth, email, password).then((userCredential) => {
+      setCurrentUser(userCredential)
+      localStorage.setItem('userUid', userCredential.user.uid)
+      localStorage.setItem('userUrl', `/tasks/${userCredential.user.uid}`)
+      localStorage.setItem('accessToken', userCredential.user.accessToken)
+
+      navigate(`/tasks/${userCredential.user.uid}`)
+    }).catch((err) => {
+      console.log(err)
+    })
+  }
+
+async function handleLogOff(){
+ await  setCurrentUser('')
+  localStorage.clear()
+ navigate('/login')
+}
   const value = {
     createUser,
     setCurrentUser,
     updateValuesTasks,
     currentUser,
-    createStruct
+    createStruct,
+    loginUser,
+    handleLogOff
   }
 
   return(
