@@ -4,6 +4,7 @@
   display: flex;
   color: white;
   height: 100vh;
+  animation: opacity 1s forwards;
 }
 
 .sing-in{
@@ -13,6 +14,7 @@
   flex: 1 8 45%;
 ;
 }
+
 aside{
   display: flex;
      justify-content: center;
@@ -59,7 +61,6 @@ aside p{
  font-size: 1.8rem;
  margin-bottom: 15px;
  color: white;
- 
 }
 aside button{
   background: none;
@@ -88,3 +89,13 @@ aside button{
   font-size: 3rem;
  }
 
+ @keyframes opacity{
+  from{
+    opacity: 0;
+    transform: translateX(-5px);
+  }
+  to{
+    opacity: 1;
+    transform: translateX(0px);
+  }
+ }

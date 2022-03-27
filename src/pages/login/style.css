@@ -3,6 +3,7 @@
   height: 100vh;
   color:white;
   font-family: 'Nunito', sans-serif;
+  animation: opacity 1s forwards;
 }
 
 
@@ -28,6 +29,7 @@
   font-size: 1.8rem;
   margin-bottom: 15px;
   color: white;
+  animation: inputsOpacity 1.5s forwards !important;
 }
 
 .sing-in-login label{
@@ -46,6 +48,7 @@
   color: white;
   cursor: pointer;
   text-align: center;
+  animation: inputsOpacity 1.5s forwards !important;
 }
 
 /*  */
@@ -88,4 +91,28 @@
   color: white;
   cursor: pointer;
   text-align: center;
+  animation: inputsOpacity 1.5s forwards !important;
 }
+
+
+@keyframes inputsOpacity{
+  from{
+    opacity: 0;
+    transform: translateX(-15px);
+  }
+  to{
+    opacity: 1;
+    transform: translateX(0px);
+  }
+ }
+
+ @keyframes opacity{
+  from{
+    opacity: 0;
+    transform: translateX(-5px);
+  }
+  to{
+    opacity: 1;
+    transform: translateX(0px);
+  }
+ }

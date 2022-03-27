@@ -4,3 +4,22 @@
   box-sizing: border-box;
 }
 
+input, button{
+  animation: inputsOpacity 1.5s forwards;
+}
+
+input:focus{
+  outline: none;
+}
+
+
+@keyframes inputsOpacity{
+  from{
+    opacity: 0;
+    transform: translateX(-15px);
+  }
+  to{
+    opacity: 1;
+    transform: translateX(0px);
+  }
+ }

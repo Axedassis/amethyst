@@ -1,0 +1,66 @@
+.backgorund{
+  font-family: 'Nunito' ,sans-serif;
+  color: white;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+  height: 100vh;
+  animation: opacity 1s forwards;
+  background: rgb(20,12,92);
+  background: linear-gradient(336deg, rgba(20,12,92,1) 0%, rgba(15,69,163,1) 45%, rgba(127,11,157,1) 100%);
+}
+
+.backgorund-content-one{
+  margin: 0 auto;
+  height: 20%;
+  flex: 1 1 2;
+}
+
+.backgorund-content-two{
+  text-align: center;
+  width: 80%;
+  margin: 0 auto;
+  height: 60%;
+  flex: 1 1 6;
+
+}
+
+.backgorund-content-two h2{
+  font-size: 3rem;
+}
+.backgorund-content-two p{
+  font-size: 1.6rem;
+}
+
+.tbns{
+  padding-top: 40px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 100%;
+  text-align: center;
+}
+
+.tbns button{
+  background: none;
+  border: 1.6px solid white;
+  padding: 10px 30px;
+  border-radius: 20px;
+  font-size: 2rem;
+  margin-bottom: 10px;
+  color: white;
+  cursor: pointer;
+  text-align: center;
+  animation: inputsOpacity 1.5s forwards !important;
+}
+
+.tbns label{
+  margin: 0 20px;
+  font-size: 2rem;
+}
+
+.backgorund h1{
+  font-size: 8rem;
+  margin: 0;
+}

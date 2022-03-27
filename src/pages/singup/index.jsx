@@ -2,6 +2,7 @@ import React, {useRef, useEffect} from 'react';
 import './style.css'
 import { useAuth } from '../../context/authContext';
 import { useNavigate } from 'react-router-dom';
+import toast from 'react-hot-toast';
 export default function SingUp(){
   const navigate = useNavigate()
   const name = useRef()
@@ -13,13 +14,45 @@ export default function SingUp(){
   async function handleCreateUser(e){
     e.preventDefault()
 
+    if(name.current.value.length < 3){
+      toast('the name should contain at least 3 characters',{
+        icon: '❌',
+        style: {
+          borderRadius: '10px',
+          background: '#333',
+          fontSize: '1.7rem',
+          fontFamily: 'Nunito', 
+          color: '#fff',
+        }
+      })
+      return;
+    }
+
     if(password.current.value.length < 6){
-      alert('passwords mucho pequeno')
+      toast('the password should contain at least 6 characters',{
+        icon: '❌',
+        style: {
+          borderRadius: '10px',
+          background: '#333',
+          fontSize: '1.7rem',
+          fontFamily: 'Nunito', 
+          color: '#fff',
+        }
+      })
       return;
     }
 
     if(password.current.value !== confirmPassword.current.value){
-      alert('passwords do not match')
+      toast('passwords do not match ',{
+        icon: '❌',
+        style: {
+          borderRadius: '10px',
+          background: '#333',
+          fontSize: '1.7rem',
+          fontFamily: 'Nunito', 
+          color: '#fff',
+        }
+      })
       return;
     }
 
@@ -60,14 +93,14 @@ export default function SingUp(){
           <label htmlFor='name'>Name:</label>
           <input
            id='name'
-           placeholder='name' 
+           placeholder='Name' 
            ref={name} type="text" 
            autoComplete='off' 
            required={true}/>
           
           <label htmlFor='email'>E-mail:</label>
           <input id='email' 
-          placeholder='e-mail' 
+          placeholder='Email' 
           ref={email} 
           type="text" 
           autoComplete='off'  
@@ -78,7 +111,7 @@ export default function SingUp(){
           id='password'  
           ref={password} 
           type="password" 
-          placeholder='password' 
+          placeholder='Password' 
           required={true}/>
 
           
@@ -87,7 +120,7 @@ export default function SingUp(){
           id='confirmPassword'  
           ref={confirmPassword} 
           type="password"  
-          placeholder='password'  
+          placeholder='Password'  
           required={true}/>
           <button type='submit'>Sing-up</button>
       </form>

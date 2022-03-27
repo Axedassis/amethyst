@@ -2,6 +2,7 @@ import React, { createContext, useContext, useState, useEffect } from 'react';
 import { createUserWithEmailAndPassword, signInWithEmailAndPassword  } from "firebase/auth";
 import { auth } from '../services/FirebaseConfig'
 import { useNavigate } from 'react-router-dom';
+import toast from 'react-hot-toast';
 import {  collection, setDoc, doc, addDoc, getDocs} from 'firebase/firestore/lite';
 import { db } from '../services/FirebaseConfig'
 const path = collection(db, 'users')
@@ -61,7 +62,17 @@ export function AuthProvider(prosp){
 
       navigate(`/tasks/${userCredential.user.uid}`)
     }).catch((err) => {
-      console.log(err)
+      toast('the credentials are invalid or user not found or do not exist ',{
+        icon: '❌',
+        style: {
+          borderRadius: '10px',
+          background: '#333',
+          fontSize: '1.7rem',
+          fontFamily: 'Nunito', 
+          color: '#fff',
+        }
+      })
+      return;
     })
   }
 

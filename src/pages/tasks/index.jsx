@@ -1,18 +1,19 @@
 import React, {useRef, useEffect, useState} from 'react';
-import { collection, addDoc, deleteDoc, doc, updateDoc, where } from 'firebase/firestore/lite';
+import { collection, addDoc, deleteDoc, doc, updateDoc } from 'firebase/firestore/lite';
 import { db } from '../../services/FirebaseConfig';
 import { useAuth } from '../../context/authContext';
 import {useParams, useNavigate}  from "react-router-dom"
 import './style.css'
 export default function Tasks(){
- const { currentUser, updateValuesTasks, handleLogOff } = useAuth()
+   const [buttonDisable, setButtonDisable] = useState(false)
+ const { updateValuesTasks, handleLogOff } = useAuth()
  const taskName = useRef()
  const [tasks, setTasks] = useState([])
 const collectionRef = collection(db, 'users', localStorage.getItem('userUid'), 'tasks')
 const params = useParams('/tasks/uid')
 const navigate = useNavigate()
   async function handleCreateNewTask(){
-
+    setButtonDisable(true)
     await addDoc(collectionRef, {
       content: taskName.current.value,
       completed: false,
@@ -20,14 +21,24 @@ const navigate = useNavigate()
     })
     taskName.current.value = ''
     updateValuesTasks(collectionRef, setTasks)
-
+    setButtonDisable(false)
   }
 
-  async function handleCompletedTask(id){
+  async function handleCompletedTask(id, taskCompleted){
     const ref = doc(db, 'users', localStorage.getItem('userUid'), 'tasks', id)
+    console.log(taskCompleted)
+    if(taskCompleted){
+      await updateDoc(ref, {
+            completed: false,
+          })
+    }else{
     await updateDoc(ref, {
-      completed: true,
-    })
+        completed: true,
+      })
+    }
+   
+  
+    updateValuesTasks(collectionRef, setTasks)
   }
 
   async function handleLogOfffunction(){
@@ -39,6 +50,7 @@ const navigate = useNavigate()
 
     updateValuesTasks(collectionRef, setTasks)
    }
+
   useEffect(() => {
     
     if(params !== localStorage.getItem('userUrl')){
@@ -46,7 +58,6 @@ const navigate = useNavigate()
     }
     
     updateValuesTasks(collectionRef, setTasks)
-    console.log(currentUser)
   }, [])
   
   return(
@@ -66,6 +77,7 @@ const navigate = useNavigate()
     <div className='task-input'>
     <button
      type='submit' 
+     disabled={buttonDisable}
      className='add'
       onClick={() => {handleCreateNewTask()}}>+</button>
 
@@ -78,15 +90,17 @@ const navigate = useNavigate()
     <div className='tasks-content'>
     {tasks.map((task) => (
       <>
-      <div className='task-unique' key={task.id}>
+      <div className={task.completed ? 'task-unique completedTask' :'task-unique' } key={task.id}>
         <div className='task-unique-content' >
-         <button onClick={() => {handleCompletedTask(task.id)}} className="completed" ></button>
-          <p>{task.content}</p>
+         <button onClick={() => {
+           handleCompletedTask(task.id, task.completed)
+           }} className={task.completed ? 'completed true lala' : 'completed'} id={task.id}></button>
+        <p>{task.content}</p>
           </div>
-          <div className='manga'>
+          <div className='container-btn'>
           <button
            onClick={() => {handleDeleteTask(task.id)}}
-            className="dell" ><strong>X</strong></button>
+            className="dell" ><strong>x</strong></button>
           </div>
       </div>
       </>
@@ -95,40 +109,6 @@ const navigate = useNavigate()
     </div>
     </div>
 </div>
-
-
-
-
-
-
-
-
-
-
-
-{/* 
-
-    <div className='all'>
-    <div className='container-task'>
-      <h1>Amethyst</h1>
-      <br />
-      <div className='item-container'>
-      <form onSubmit={handleCreateNewTask}>
-        <input  type="text"  ref={taskName} required={true} />
-        <button type='submit' className='add'>+</button>
-      </form>
-
-
-      {tasks.map((task) => (
-      <div className='task' key={task.id}>
-        <p>{task.content}</p>
-        <button onClick={() => {handleDeleteTask(task.id)}} className="dell" >x</button>
-      </div>
-      ))}
-      
-      </div>
-    </div>
-    </div> */}
     </>
   )
 }

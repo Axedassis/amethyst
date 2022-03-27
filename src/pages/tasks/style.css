@@ -79,6 +79,11 @@ h1{
   border-bottom: 2px solid #353535;
   border-radius: 10px;
 }
+
+.completedTask{
+  opacity: 0.5;
+
+}
 .completed{
   height: 23px;
   width: 10px;
@@ -91,6 +96,11 @@ h1{
   text-align: center;
   border: 1.8px solid whitesmoke;
 }
+.true{
+  background-color: greenyellow;
+  border: 1.8px solid greenyellow;
+}
+
 .task-unique p{
   font-size: 1.8rem;
   margin: 0;
@@ -104,7 +114,7 @@ h1{
   cursor: pointer;
 }
 
-.manga{
+.container-btn{
   display: flex;
   align-items: center;
 }
@@ -126,4 +136,8 @@ h1{
   text-align: center;
   border: 1.8px solid whitesmoke;
   margin: 15px;
+}
+
+input,button{
+  animation: none !important;
 }
