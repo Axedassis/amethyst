@@ -1,11 +1,15 @@
 import React, { createContext, useContext, useState, useEffect } from 'react';
+
 import { createUserWithEmailAndPassword, signInWithEmailAndPassword  } from "firebase/auth";
-import { auth } from '../services/FirebaseConfig'
-import { useNavigate } from 'react-router-dom';
+
 import toast from 'react-hot-toast';
+
 import {  collection, setDoc, doc, addDoc, getDocs} from 'firebase/firestore/lite';
 import { db } from '../services/FirebaseConfig'
-const path = collection(db, 'users')
+
+import { auth } from '../services/FirebaseConfig'
+import { useNavigate } from 'react-router-dom';
+
 
 const AuhtContext = createContext()
 
@@ -31,13 +35,20 @@ export function AuthProvider(prosp){
   }
 
   async function createStruct(userCredential, name){
-    await setDoc(doc(path, userCredential.user.uid),{
+    await setDoc(doc(db, 'users', userCredential.user.uid),{
       nameUser: name.current.value,
     })
 
     await addDoc(collection(db, 'users', userCredential.user.uid, 'tasks'),{
-     
+      content: 'Welcome!, are you ready?',
+      completed: false,
+      createAt: new Date()
     })
+
+    localStorage.setItem('userUid', userCredential.user.uid)
+    localStorage.setItem('userUrl', `/tasks/${userCredential.user.uid}`)
+    localStorage.setItem('accessToken', userCredential.user.accessToken)
+
   }
 
   async function updateValuesTasks(collectionRef, setTasks){
@@ -76,11 +87,12 @@ export function AuthProvider(prosp){
     })
   }
 
-async function handleLogOff(){
- await  setCurrentUser('')
-  localStorage.clear()
- navigate('/login')
-}
+  async function handleLogOff(){
+  await  setCurrentUser('')
+    localStorage.clear()
+  navigate('/login')
+  }
+
   const value = {
     createUser,
     setCurrentUser,
@@ -88,7 +100,7 @@ async function handleLogOff(){
     currentUser,
     createStruct,
     loginUser,
-    handleLogOff
+    handleLogOff,
   }
 
   return(
