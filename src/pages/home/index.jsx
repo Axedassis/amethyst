@@ -4,9 +4,11 @@ import { useNavigate } from 'react-router-dom';
 export default function Home(){
   const navigate = useNavigate()
   return(
-  <>
+  <> 
+  <div className='backgorund-media'> </div>
     <div className='backgorund'>
       <div className='backgorund-content-one'>
+       
         <h1>Amethys</h1>
         </div>
         <div className='backgorund-content-two'>

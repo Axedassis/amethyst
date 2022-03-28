@@ -83,11 +83,13 @@ export default function SingUp(){
   },[])
 
   return(
-    <>
+    <>   
 <div className='container'>
+   <div  className='name'>Amethyst</div>
   <div className='sing-in'>
       <aside>
-        <h2>Welcome Back!</h2>
+   
+        <h2>Welcome!</h2>
         <p>if you already have an account, sing-in here</p>
         <button onClick={() => { navigate('/login') }}>Sing in</button>
       </aside>
@@ -132,6 +134,7 @@ export default function SingUp(){
 
           <button type='submit'>Sing-up</button>
       </form>
+      
 </div>
     </>
   )

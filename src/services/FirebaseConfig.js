@@ -3,12 +3,12 @@ import { getAuth } from 'firebase/auth'
 import {getFirestore} from 'firebase/firestore/lite'
  
 const firebaseConfig = {
-  apiKey: "AIzaSyD5s1rX1W1LubC-ndPLbBt8M--rklXhJz4",
-  authDomain: "amethyst-c2a32.firebaseapp.com",
-  projectId: "amethyst-c2a32",
-  storageBucket: "amethyst-c2a32.appspot.com",
-  messagingSenderId: "610670876417",
-  appId: "1:610670876417:web:4710354dc6600570a96d00"
+  apiKey: process.env.REACT_APP_API_KEY,
+  authDomain:process.env.REACT_APP_AUTH_DOMAIN,
+  projectId: process.env.REACT_APP_PROJECT_ID,
+  storageBucket:process.env.REACT_APP_STORAGE_BUCKET ,
+  messagingSenderId:process.env.REACT_APP_MESSAGING_SENDER_ID,
+  appId: process.env.REACT_APP_APP_ID
 };
 
 export const app = initializeApp(firebaseConfig);

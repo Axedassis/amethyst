@@ -70,9 +70,8 @@ export default function Tasks(){
   
   return(
     <> 
+    <div className='banner'></div>
 <div className='body'>
-  <div className='banner'></div>
-
   <div className='log-off'>
       <button onClick={handleLogOfffunction}>Log-off</button>
   </div>

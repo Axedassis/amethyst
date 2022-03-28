@@ -61,6 +61,7 @@ aside p{
  font-size: 1.8rem;
  margin-bottom: 15px;
  color: white;
+ animation: inputsOpacity 1.5s forwards !important;
 }
 aside button{
   background: none;
@@ -83,12 +84,21 @@ aside button{
   color: white;
   cursor: pointer;
   text-align: center;
+  animation: inputsOpacity 1.5s forwards !important;
  }
 
  h1{
   font-size: 3rem;
  }
 
+ .name{
+   position: absolute;
+   width: 100%;
+   text-align: center;
+   margin-top: 20px;
+   font-size: 5rem;
+   font-family: 'Nunito', sans-serif;
+ }
  @keyframes opacity{
   from{
     opacity: 0;
@@ -98,4 +108,21 @@ aside button{
     opacity: 1;
     transform: translateX(0px);
   }
+ }
+
+
+ @media (max-width: 730px){
+  .container{
+    flex-direction: column;
+    height: 200vh;
+  }
+  .sing-in{
+    flex: 1 4 107vh; 
+    height: 100vh;
+  }
+
+  
+.sing-up-{
+  flex: 1 6 100vh;
+}
  }

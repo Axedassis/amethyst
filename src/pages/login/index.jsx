@@ -59,6 +59,7 @@ export default function Login(){
 
   return(
     <>
+    <div  className='name'>Amethyst</div>
 <div className="container-singIn">
   <div className="sing-in-login"> 
     <form  onSubmit={handleLoginUser}> 
@@ -93,14 +94,17 @@ export default function Login(){
           <button type='submit'>Sing-in</button>
     </form>
   </div>
-
-  <div className="sing-up-login">
+<div className="sing-up-login">
     <div className='aside-sing-up-login'>
       <h2> Welcome Back! </h2>
-        <p>if you already have an account, sing-in here</p>
+        <p>Don't have an account yet? Sign Up</p>
       <button onClick={() => {navigate('/singup')}}>Sing up </button>
     </div>
   </div>
+
+
+
+  
 </div>
     </>
   )

@@ -9,7 +9,7 @@
    background: rgb(20,12,92);
   background: linear-gradient(309deg, rgba(20,12,92,1) 0%, rgba(15,69,163,1) 45%, rgba(127,11,157,1) 100%);
   width: 100%;
-  height: 22vh;
+  height: 150px;
   z-index: -1;
 }
 .all-tasks{
@@ -140,4 +140,32 @@ h1{
 
 input,button{
   animation: none !important;
+}
+
+
+@media (max-width: 640px){
+  .task-input{
+    display: flex;
+    font-size: 1rem
+  }
+  .task-input input{
+    font-size: 1.4rem;
+  }
+
+  .task-unique p{
+    display: flex;
+    flex-wrap: wrap;
+    font-size: 1.2rem;
+    margin: 0;
+  }
+
+  .all-tasks{
+    width: 95%;
+    margin: 0 auto;
+  }
+
+  .tasks{
+    width: 85%;
+  
+  }
 }

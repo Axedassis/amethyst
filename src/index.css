@@ -8,3 +8,8 @@ body {
   background-color: #322f42;
   
 }
+@media(max-width: 660px){
+  html{
+    font-size: 55%;
+  }
+}
